@@ -1,0 +1,8 @@
+set runtimepath+=./
+set runtimepath+=build/vader.vim/
+set runtimepath-=~/.vim
+set runtimepath-=~/.vim/after
+filetype on
+filetype plugin on
+filetype indent on
+syntax on

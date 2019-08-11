@@ -1,0 +1,19 @@
+# Travis CI Configuration File
+# https://docs.travis-ci.com/user/customizing-the-build/
+
+# vimscript is not currently supported.  Use generic.
+# See https://github.com/travis-ci/travis-ci/issues/2867
+language: generic
+
+# To test on OS X in addition to Linux, uncomment:
+# os:
+#  - linux
+#  - osx
+
+script:
+  - ./run-tests.sh
+
+addons:
+  apt:
+    packages:
+      - vim

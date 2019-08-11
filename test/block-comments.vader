@@ -1,0 +1,50 @@
+Given jsonc (block comment):
+  /* HERE */
+
+Execute (block comment syntax):
+  AssertEqual SyntaxOf('/\*'), 'jsonComment'
+  AssertEqual SyntaxOf('HERE'), 'jsonComment'
+  AssertEqual SyntaxOf('\*/'), 'jsonComment'
+
+Given jsonc (block comment in single-line object):
+  { /* HERE */ }
+
+Execute (block comment in single-line object syntax):
+  AssertNotEqual SyntaxOf('{'), 'jsonComment'
+  AssertEqual SyntaxOf('/\*'), 'jsonComment'
+  AssertEqual SyntaxOf('HERE'), 'jsonComment'
+  AssertEqual SyntaxOf('\*/'), 'jsonComment'
+  AssertNotEqual SyntaxOf('}'), 'jsonComment'
+
+Given jsonc (block comment in multi-line object):
+  {
+  /* HERE */
+  }
+
+Execute (block comment in multi-line object syntax):
+  AssertNotEqual SyntaxOf('{'), 'jsonComment'
+  AssertEqual SyntaxOf('/\*'), 'jsonComment'
+  AssertEqual SyntaxOf('HERE'), 'jsonComment'
+  AssertEqual SyntaxOf('\*/'), 'jsonComment'
+  AssertNotEqual SyntaxOf('}'), 'jsonComment'
+
+Given jsonc (block comment in array string):
+  ["/* HERE */"]
+
+Execute (block comment in array string syntax):
+  AssertNotEqual SyntaxOf('['), 'jsonComment'
+  AssertNotEqual SyntaxOf('"'), 'jsonComment'
+  AssertNotEqual SyntaxOf('/\*'), 'jsonComment'
+  AssertNotEqual SyntaxOf('HERE'), 'jsonComment'
+  AssertNotEqual SyntaxOf('\*/'), 'jsonComment'
+  AssertNotEqual SyntaxOf(']'), 'jsonComment'
+
+Given jsonc (line comment in block comment):
+  [ /* // */ ]
+
+Execute (line comment in block comment syntax):
+  AssertNotEqual SyntaxOf('['), 'jsonComment'
+  AssertEqual SyntaxOf('/\*'), 'jsonComment'
+  AssertEqual SyntaxOf('//'), 'jsonComment'
+  AssertEqual SyntaxOf('\*/'), 'jsonComment'
+  AssertNotEqual SyntaxOf(']'), 'jsonComment'

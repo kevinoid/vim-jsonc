@@ -1,0 +1,40 @@
+Given jsonc (line comment):
+  // HERE
+
+Execute (line comment syntax):
+  AssertEqual SyntaxOf('//'), 'jsonLineComment'
+  AssertEqual SyntaxOf('HERE'), 'jsonLineComment'
+
+Given jsonc (line comment in multi-line object):
+  {
+  // HERE
+  }
+
+Execute (line comment in multi-line object syntax):
+  AssertNotEqual SyntaxOf('{'), 'jsonLineComment'
+  AssertEqual SyntaxOf('//'), 'jsonLineComment'
+  AssertEqual SyntaxOf('HERE'), 'jsonLineComment'
+  AssertNotEqual SyntaxOf('}'), 'jsonLineComment'
+
+Given jsonc (line comment in array string):
+  ["// HERE"]
+
+Execute (line comment in array string syntax):
+  AssertNotEqual SyntaxOf('['), 'jsonLineComment'
+  AssertNotEqual SyntaxOf('"'), 'jsonLineComment'
+  AssertNotEqual SyntaxOf('//'), 'jsonLineComment'
+  AssertNotEqual SyntaxOf('HERE'), 'jsonLineComment'
+  AssertNotEqual SyntaxOf(']'), 'jsonLineComment'
+
+Given jsonc (block comment in line comment):
+  [
+    // /**/ HERE
+  ]
+
+Execute (line comment in block comment syntax):
+  AssertNotEqual SyntaxOf('['), 'jsonComment'
+  AssertEqual SyntaxOf('//'), 'jsonLineComment'
+  AssertEqual SyntaxOf('/\*'), 'jsonLineComment'
+  AssertEqual SyntaxOf('\*/'), 'jsonLineComment'
+  AssertEqual SyntaxOf('HERE'), 'jsonLineComment'
+  AssertNotEqual SyntaxOf(']'), 'jsonComment'
