@@ -30,7 +30,7 @@ if ! [ -d build/vim-vimlint ]; then
 fi
 
 # Run vimlint
-./build/vim-vimlint/bin/vimlint.sh -l build/vim-vimlint -p build/vim-vimlparser -v "$@"
+./build/vim-vimlint/bin/vimlint.sh -l build/vim-vimlint -p build/vim-vimlparser "$@"
 
 # Ensure vint is available, then run it
 if command -v vint >/dev/null; then
