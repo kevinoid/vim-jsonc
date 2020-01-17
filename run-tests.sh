@@ -2,8 +2,20 @@
 
 set -Ceu
 
+if [ $# -ne 0 ]; then
+	echo "Usage: $0" >&2
+	exit 1
+fi
+
 # Work from project root
 cd "$(dirname "$0")"
+
+# Set dirs to lint as arguments, excluding build dir (if present)
+for dir in *; do
+	if [ "$dir" != build ] && [ -d "$dir" ]; then
+		set -- "$@" "$dir"
+	fi
+done
 
 # Use build for build and test tools
 mkdir -p build
@@ -18,11 +30,11 @@ if ! [ -d build/vim-vimlint ]; then
 fi
 
 # Run vimlint
-./build/vim-vimlint/bin/vimlint.sh -l build/vim-vimlint -p build/vim-vimlparser -v .
+./build/vim-vimlint/bin/vimlint.sh -l build/vim-vimlint -p build/vim-vimlparser -v "$@"
 
 # Ensure vint is available, then run it
 if command -v vint >/dev/null; then
-	vint -s .
+	vint -s "$@"
 elif command -v python3 >/dev/null; then
 	if ! [ -d build/venv3 ]; then
 		python3 -m venv build/venv3
@@ -31,7 +43,7 @@ elif command -v python3 >/dev/null; then
 		# Note: --no-binary vim-vint is used to work around Kuniwak/vint#287
 		./build/venv3/bin/pip3 install --no-binary vim-vint
 	fi
-	./build/venv3/bin/vint -s .
+	./build/venv3/bin/vint -s "$@"
 elif command -v virtualenv >/dev/null; then
 	if ! [ -d build/venv2 ]; then
 		virtualenv build/venv2
@@ -40,7 +52,7 @@ elif command -v virtualenv >/dev/null; then
 		# Note: --no-binary vim-vint is used to work around Kuniwak/vint#287
 		./build/venv2/bin/pip install --no-binary vim-vint
 	fi
-	./build/venv2/bin/vint -s .
+	./build/venv2/bin/vint -s "$@"
 else
 	echo 'Warning: Skipping vint.' >&2
 fi
@@ -51,4 +63,4 @@ if ! [ -d build/vader.vim ]; then
 fi
 
 # Run Vader tests
-exec vim -i NONE -u test-vimrc -U NONE -V1 -nNeXs "$@" -c 'Vader! test/*.vader'
+exec vim -i NONE -u test-vimrc -U NONE -V1 -nNeXs -c 'Vader! test/*.vader'
