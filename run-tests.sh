@@ -30,7 +30,12 @@ if ! [ -d build/vim-vimlint ]; then
 fi
 
 # Run vimlint
-./build/vim-vimlint/bin/vimlint.sh -l build/vim-vimlint -p build/vim-vimlparser "$@"
+# Ignore EVL103 (unused argument) for argument names starting with _
+./build/vim-vimlint/bin/vimlint.sh \
+	-l build/vim-vimlint \
+	-p build/vim-vimlparser \
+	-e 'EVL103.a:_.*=1' \
+	"$@"
 
 # Ensure vint is available, then run it
 if command -v vint >/dev/null; then
