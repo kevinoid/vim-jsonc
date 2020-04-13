@@ -21,13 +21,13 @@ This plugin can be installed in the usual ways:
 ### Using [Vim Packages](https://vimhelp.org/repeat.txt.html#packages)
 
 ```sh
-git checkout https://github.com/kevinoid/vim-jsonc.git ~/.vim/pack/git-plugins/start/vim-jsonc
+git clone https://github.com/kevinoid/vim-jsonc.git ~/.vim/pack/git-plugins/start/vim-jsonc
 ```
 
 ### Using [Pathogen](https://github.com/tpope/vim-pathogen)
 
 ```sh
-git checkout https://github.com/kevinoid/vim-jsonc.git ~/.vim/bundle/vim-jsonc
+git clone https://github.com/kevinoid/vim-jsonc.git ~/.vim/bundle/vim-jsonc
 ```
 
 ### Using [Vundle](https://github.com/VundleVim/Vundle.vim)
