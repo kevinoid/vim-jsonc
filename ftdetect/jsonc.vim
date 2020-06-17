@@ -17,6 +17,9 @@ augroup jsoncFtdetect
     autocmd BufNewFile,BufRead .eslintrc.json setlocal filetype=jsonc
     " https://jshint.com/docs/
     autocmd BufNewFile,BufRead .jshintrc setlocal filetype=jsonc
+    " https://mochajs.org/#configuring-mocha-nodejs
+    autocmd BufNewFile,BufRead .mocharc.json setlocal filetype=jsonc
+    autocmd BufNewFile,BufRead .mocharc.jsonc setlocal filetype=jsonc
     " https://github.com/neoclide/coc.nvim
     autocmd BufNewFile,BufRead coc-settings.json setlocal filetype=jsonc
     " https://github.com/clutchski/coffeelint/pull/407
