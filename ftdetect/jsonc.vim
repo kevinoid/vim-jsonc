@@ -1,5 +1,7 @@
 augroup jsoncFtdetect
-    autocmd BufNewFile,BufRead *.cjson setlocal filetype=jsonc
+    " Recognize some extensions known to have JSON with comments
+
+    autocmd BufNewFile,BufRead *.cjson setfiletype jsonc
     " Recognize files with .jsonc extension
     autocmd BufNewFile,BufRead *.jsonc setfiletype jsonc
 
