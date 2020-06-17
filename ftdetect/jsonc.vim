@@ -12,4 +12,8 @@ augroup jsoncFtdetect
     autocmd BufNewFile,BufRead coffeelint.json setlocal filetype=jsonc
     " https://github.com/microsoft/TypeScript/pull/5450
     autocmd BufNewFile,BufRead tsconfig.json setlocal filetype=jsonc
+    
+    autocmd BufNewFile,BufRead *.cjson setlocal filetype=jsonc
+    " https://github.com/neoclide/coc.nvim
+    autocmd BufNewFile,BufRead coc-settings.json setlocal filetype=jsonc
 augroup END
