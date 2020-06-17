@@ -2,6 +2,8 @@ augroup jsoncFtdetect
     " Recognize some extensions known to have JSON with comments
 
     " https://github.com/mohae/cjson
+    autocmd BufNewFile,BufRead *.cjsn setfiletype jsonc
+    " https://github.com/mohae/cjson
     autocmd BufNewFile,BufRead *.cjson setfiletype jsonc
     " https://github.com/Microsoft/vscode/issues/48969
     " https://komkom.github.io/
