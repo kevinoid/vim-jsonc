@@ -56,6 +56,35 @@ This project was inspired by, and the code is based on,
 [**@TheLocehiliosan**](https://github.com/TheLocehiliosan).
 
 
+## Filetype Detection
+
+Once installed, the `jsonc` filetype is automatically used for files named
+`*.jsonc`, `*.cjson`, and `*.cjsn`.  Additionally, some configuration files
+known to support JSON with comments are recognized by name.  See
+[`ftdetect/jsonc.vim`](ftdetect/jsonc.vim) for the complete list.
+
+To use the `jsonc` filetype for additional file names/paths, consider using
+an [`:autocmd`](https://vimhelp.org/autocmd.txt.html#:autocmd).  For example,
+to treat files with the extension `mycjson` as `jsonc` by adding the following
+to [`vimrc`](https://vimhelp.org/starting.txt.html#vimrc):
+
+```vim
+autocmd BufRead,BufNewFile *.mycjson set filetype=jsonc
+```
+
+**Note:** Users with large or complex configurations may want to consider
+placing the `:autocmd` in `after/filetype.vim` or `ftdetect/mycjson.vim` for
+performance and to keep `vimrc` manageable.  See
+[`:filetype`](https://vimhelp.org/filetype.txt.html#:filetype),
+[`new-filetype`](https://vimhelp.org/filetype.txt.html#new-filetype), and
+[`after-directory`](https://vimhelp.org/options.txt.html#after-directory) for
+details.
+
+If the file name or extension is widely used for JSON with comments, please
+consider sending a [pull request](https://github.com/kevinoid/vim-jsonc/pulls)
+to add it to [`ftdetect/jsonc.vim`](ftdetect/jsonc.vim).
+
+
 ## Contributing
 
 Contributions are appreciated!  Please add tests where possible and ensure
