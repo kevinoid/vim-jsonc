@@ -1,4 +1,6 @@
 augroup jsoncFtdetect
+    autocmd!
+
     " Recognize some extensions known to have JSON with comments
     " Note: If conflicts are found, please report them.
 
