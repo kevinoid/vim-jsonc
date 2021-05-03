@@ -29,4 +29,6 @@ augroup jsoncFtdetect
     autocmd BufNewFile,BufRead coffeelint.json setlocal filetype=jsonc
     " https://github.com/microsoft/TypeScript/pull/5450
     autocmd BufNewFile,BufRead tsconfig.json setlocal filetype=jsonc
+    " https://github.com/Alexays/Waybar/wiki/Configuration
+    autocmd BufNewFile,BufRead */waybar/config setlocal filetype=jsonc
 augroup END
