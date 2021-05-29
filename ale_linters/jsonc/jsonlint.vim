@@ -13,15 +13,25 @@ call ale#Set('jsonc_jsonlint_use_global', get(g:, 'ale_use_global_executables', 
 call ale#Set('jsonc_sjc_executable', 'strip-json-comments')
 call ale#Set('jsonc_sjc_use_global', get(g:, 'ale_use_global_executables', 0))
 
+" ale#node#FindExecutable was moved to ale#path#FindExecutable in
+" w0rp/ale@f5343133
+function! s:FindExecutable(buffer, base_var_name, path_list) abort
+    try
+        return ale#path#FindExecutable(a:buffer, a:base_var_name, a:path_list)
+    catch /^Vim(return):E117: Unknown function: ale#path#FindExecutable$/
+        return ale#node#FindExecutable(a:buffer, a:base_var_name, a:path_list)
+    endtry
+endfunction
+
 function! ale_linters#jsonc#jsonlint#GetJsonlintExecutable(buffer) abort
-    return ale#node#FindExecutable(a:buffer, 'jsonc_jsonlint', [
+    return s:FindExecutable(a:buffer, 'jsonc_jsonlint', [
     \   'node_modules/.bin/jsonlint',
     \   'node_modules/jsonlint/lib/cli.js',
     \])
 endfunction
 
 function! ale_linters#jsonc#jsonlint#GetSjcExecutable(buffer) abort
-    return ale#node#FindExecutable(a:buffer, 'jsonc_sjc', [
+    return s:FindExecutable(a:buffer, 'jsonc_sjc', [
     \   'node_modules/.bin/strip-json-comments',
     \   'node_modules/strip-json-comments-cli/cli.js',
     \])
