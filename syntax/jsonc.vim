@@ -20,7 +20,9 @@ endif
 runtime syntax/json.vim
 
 " Remove syntax group for comments treated as errors
-syn clear jsonCommentError
+if !exists("g:vim_json_warnings") || g:vim_json_warnings
+  syn clear jsonCommentError
+endif
 
 " Define syntax matching comments and their contents
 syn keyword jsonCommentTodo  FIXME NOTE TBD TODO XXX
