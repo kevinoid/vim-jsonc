@@ -1,3 +1,18 @@
+⚠️ Deprecated ⚠️
+==============
+
+Support for the jsonc filetype is included in Vim 8.2.3117 and later
+([#8500](https://github.com/vim/vim/pull/8500)) and NeoVim 0.6.0 and later
+([#15494](https://github.com/neovim/neovim/pull/15494)).  Using the built-in
+jsonc filetype plugin is recommended.
+
+**Note:** The built-in jsonc filetype is currently only applied to files with
+the .jsonc extension.  To use the filetype for additional files, consider
+adding a [`modeline`](https://vimhelp.org/options.txt.html#modeline) comment
+and/or copying [`ftdetect/jsonc.vim`](ftdetect/jsonc.vim) from this plugin into
+[`'runtimepath'`](https://vimhelp.org/options.txt.html#%27runtimepath%27).
+
+
 JSON with Comments for Vim
 ==========================
 
